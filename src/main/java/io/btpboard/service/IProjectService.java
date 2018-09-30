@@ -1,6 +1,6 @@
 package io.btpboard.service;
 
-import io.btpboard.ProjectDTO;
+import io.btpboard.dto.ProjectDTO;
 import io.btpboard.persistance.entity.Project;
 
 import java.util.List;

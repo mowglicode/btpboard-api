@@ -1,6 +1,6 @@
 package io.btpboard.service.impl;
 
-import io.btpboard.ProjectDTO;
+import io.btpboard.dto.ProjectDTO;
 import io.btpboard.exception.NotFoundException;
 import io.btpboard.persistance.entity.Project;
 import io.btpboard.persistance.repository.IProjectRepository;

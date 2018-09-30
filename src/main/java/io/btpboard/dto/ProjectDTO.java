@@ -1,4 +1,4 @@
-package io.btpboard;
+package io.btpboard.dto;
 
 public class ProjectDTO {
 

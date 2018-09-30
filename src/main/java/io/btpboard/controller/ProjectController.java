@@ -1,6 +1,6 @@
 package io.btpboard.controller;
 
-import io.btpboard.ProjectDTO;
+import io.btpboard.dto.ProjectDTO;
 import io.btpboard.persistance.entity.Project;
 import io.btpboard.service.IProjectService;
 import io.swagger.annotations.ApiOperation;
