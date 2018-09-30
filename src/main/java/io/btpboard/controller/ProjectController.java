@@ -25,7 +25,7 @@ public class ProjectController {
         return service.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
     public ProjectDTO save(@RequestBody Project project) {
         return service.save(project);
     }
