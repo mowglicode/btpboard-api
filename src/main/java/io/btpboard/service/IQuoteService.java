@@ -11,4 +11,5 @@ public interface IQuoteService {
     public QuoteDTO save(Quote quote);
     public QuoteDTO findOne(long id);
     public void delete(long id);
+    public QuoteDTO saveWithProjectId(Quote quote, long idProject);
 }

@@ -1,13 +1,17 @@
 package io.btpboard.service.impl;
 
+import io.btpboard.dto.ProjectDTO;
 import io.btpboard.dto.QuoteDTO;
 import io.btpboard.exception.NotFoundException;
+import io.btpboard.persistance.entity.Project;
 import io.btpboard.persistance.entity.Quote;
 import io.btpboard.persistance.repository.IQuoteRepository;
+import io.btpboard.service.IProjectService;
 import io.btpboard.service.IQuoteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +22,9 @@ public class QuoteService implements IQuoteService {
 
     @Autowired
     IQuoteRepository repository;
+
+    @Autowired
+    IProjectService projectService;
 
     @Autowired
     ModelMapper modelMapper;
@@ -51,5 +58,16 @@ public class QuoteService implements IQuoteService {
     public void delete(long id) {
         this.findOne(id);
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public QuoteDTO saveWithProjectId(Quote quote, long idProject) {
+        ProjectDTO projectDTO = projectService.findOne(idProject);
+        Project project = modelMapper.map(projectDTO, Project.class);
+        quote.setProject(project);
+        quote = repository.save(quote);
+        return modelMapper.map(quote, QuoteDTO.class);
+
     }
 }

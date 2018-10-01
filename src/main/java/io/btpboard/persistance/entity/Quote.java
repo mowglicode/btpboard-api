@@ -1,5 +1,7 @@
 package io.btpboard.persistance.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -26,6 +28,10 @@ public class Quote {
 
     @Column(name = "due_date", nullable = false)
     private Date dueDate;
+
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    private Project project;
 
     public long getId() {
         return id;
@@ -73,5 +79,13 @@ public class Quote {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

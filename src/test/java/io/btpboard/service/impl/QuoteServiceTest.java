@@ -1,7 +1,10 @@
 package io.btpboard.service.impl;
 
 import io.btpboard.dto.QuoteDTO;
+import io.btpboard.persistance.entity.Project;
 import io.btpboard.persistance.entity.Quote;
+import io.btpboard.persistance.repository.IProjectRepository;
+import io.btpboard.service.IProjectService;
 import io.btpboard.service.IQuoteService;
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +25,9 @@ public class QuoteServiceTest {
 
     @Autowired
     IQuoteService service;
+
+    @Autowired
+    IProjectService projectService;
 
     Quote quote1;
     QuoteDTO quote1DTO;
@@ -93,4 +99,25 @@ public class QuoteServiceTest {
         quotesDTO = service.findAll();
         assertEquals(1, quotesDTO.size());
     }
+
+
+
+    @Test
+    public void saveWithProjectId() {
+        Project project = new Project();
+        project.setTitle("Titre test many to one");
+        projectService.save(project);
+        Quote quote2 = new Quote();
+        quote2.setCreatedAt(new Date());
+        quote2.setDueDate(dueDate);
+        quote2.setObject("Devis 2 de test");
+        quote2.setNumber("14TESTDEV");
+        quote2.setTotalAmount(478965.41);
+        QuoteDTO quote2DTO = service.saveWithProjectId(quote2, project.getId());
+        assertEquals(quote2.getNumber(), quote2DTO.getNumber());
+        assertEquals(project.getTitle(), quote2DTO.getProject().getTitle());
+        service.delete(quote2.getId());
+        projectService.delete(project.getId());
+    }
+
 }

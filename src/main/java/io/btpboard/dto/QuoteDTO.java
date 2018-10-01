@@ -1,5 +1,7 @@
 package io.btpboard.dto;
 
+import io.btpboard.persistance.entity.Project;
+
 import java.util.Date;
 
 public class QuoteDTO {
@@ -10,6 +12,7 @@ public class QuoteDTO {
     private double totalAmount;
     private Date createAt;
     private Date dueDate;
+    private ProjectDTO project;
 
     public long getId() {
         return id;
@@ -57,5 +60,13 @@ public class QuoteDTO {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public ProjectDTO getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectDTO project) {
+        this.project = project;
     }
 }
