@@ -1,20 +1,53 @@
 package io.btpboard.persistance.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Client {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
+
+    @Column(unique = true, nullable = false)
     private String code;
+
+    @Column(name = "company_name")
     private String companyName;
+
+    @Column
     private String firstname;
+
+    @Column
     private String lastname;
+
+    @Column
     private String address;
+
+    @Column(nullable = false)
     private int zipcode;
+
+    @Column(nullable = false)
     private String city;
+
+    @Column
     private String email;
+
+    @Column
     private String phone1;
+
+    @Column
     private String phone2;
+
+    @Column
     private String fax;
+
+    @Column(nullable = false, unique = true)
     private long siret;
+
+    @Column(nullable = false)
     private boolean society = true;
 
     public long getId() {
