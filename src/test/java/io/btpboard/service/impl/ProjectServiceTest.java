@@ -29,6 +29,7 @@ public class ProjectServiceTest {
     public void setUp() throws Exception {
         project = new Project();
         project.setTitle("Construction Villa Minatchy");
+        project.setDescription("Construction d'une Villa T4");
         projectDTO = service.save(project);
     }
 
@@ -41,6 +42,7 @@ public class ProjectServiceTest {
     public void save() {
         Project project2 = new Project();
         project2.setTitle("Construction École Kourou 6");
+        project2.setDescription("Construction d'une école TCE");
         ProjectDTO project2DTO = service.save(project2);
         assertEquals(project2.getTitle(), project2DTO.getTitle());
     }
@@ -56,6 +58,7 @@ public class ProjectServiceTest {
     public void findAll() {
         Project project2 = new Project();
         project2.setTitle("Construction École Cayenne 6");
+        project2.setDescription("Construction d'une école TCE");
         ProjectDTO project2DTO = service.save(project2);
         List<ProjectDTO> projectsDTO = service.findAll();
         assertEquals(2, projectsDTO.size());
@@ -66,6 +69,7 @@ public class ProjectServiceTest {
     public void delete() {
         Project project2 = new Project();
         project2.setTitle("Construction École Cayenne 6");
+        project2.setDescription("Construction d'une école TCE");
         ProjectDTO project2DTO = service.save(project2);
         List<ProjectDTO> projectsDTO = service.findAll();
         assertEquals(2, projectsDTO.size());
