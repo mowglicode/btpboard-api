@@ -61,7 +61,7 @@ public class ClientServiceTest {
 
         List<ClientDTO> clientDTOS = service.findAll();
         assertEquals(2, clientDTOS.size());
-        assertEquals(client2.getSiret(), clientDTOS.get(1).getSiret());
+        assertEquals(client2.getSiret(), clientDTOS.get(0).getSiret());
         service.delete(client2.getId());
 
     }
@@ -70,10 +70,10 @@ public class ClientServiceTest {
     public void findOne() {
         Client client2 = new Client();
         client2.setCity("Petit-Bourg");
-        client2.setCode("PBTEST02");
+        client2.setCode("PBTEST03");
         client2.setCompanyName("SAS Minatchy Construction");
         client2.setZipcode(97170);
-        client2.setSiret(7887985463225L);
+        client2.setSiret(788798563225L);
         client2.setSociety(true);
         service.save(client2);
         ClientDTO clientDTO = service.findOne(client2.getId());
@@ -85,10 +85,10 @@ public class ClientServiceTest {
     public void delete() {
         Client client2 = new Client();
         client2.setCity("Petit-Bourg");
-        client2.setCode("PBTEST02");
+        client2.setCode("PBTEST04");
         client2.setCompanyName("SAS Minatchy Construction");
         client2.setZipcode(97170);
-        client2.setSiret(7887985463225L);
+        client2.setSiret(788785463225L);
         client2.setSociety(true);
         service.save(client2);
 
