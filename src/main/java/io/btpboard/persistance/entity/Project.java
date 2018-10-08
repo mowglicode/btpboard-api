@@ -26,7 +26,7 @@ public class Project {
     @Column
     private String country;
 
-    @Column
+    @Column(name = "zip_code")
     private int zipCode;
 
     @Column
