@@ -11,4 +11,5 @@ public interface IProjectService {
     ProjectDTO findOne(long id);
     void delete(long id);
     List<ProjectDTO> findAll();
+    ProjectDTO saveWithClientId(Project project, long idClient);
 }

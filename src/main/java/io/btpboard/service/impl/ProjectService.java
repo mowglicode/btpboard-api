@@ -2,7 +2,9 @@ package io.btpboard.service.impl;
 
 import io.btpboard.dto.ProjectDTO;
 import io.btpboard.exception.NotFoundException;
+import io.btpboard.persistance.entity.Client;
 import io.btpboard.persistance.entity.Project;
+import io.btpboard.persistance.repository.IClientRepository;
 import io.btpboard.persistance.repository.IProjectRepository;
 import io.btpboard.service.IProjectService;
 import org.modelmapper.ModelMapper;
@@ -21,6 +23,9 @@ public class ProjectService implements IProjectService {
 
     @Autowired
     ModelMapper modelMapper;
+
+    @Autowired
+    IClientRepository clientRepository;
 
     @Override
     public ProjectDTO save(Project project) {
@@ -51,5 +56,19 @@ public class ProjectService implements IProjectService {
             projectsDTO.add(modelMapper.map(project, ProjectDTO.class));
         }
         return projectsDTO;
+    }
+
+    @Override
+    public ProjectDTO saveWithClientId(Project project, long idClient) {
+        Optional<Client> tmp = clientRepository.findById(idClient);
+        if (tmp.isPresent()) {
+            Client client = modelMapper.map(tmp.get(), Client.class);
+            client = clientRepository.save(client);
+            project.setClient(client);
+            project = repository.save(project);
+            return modelMapper.map(project, ProjectDTO.class);
+        }
+
+        throw new NotFoundException("Client not found, Project can't be created");
     }
 }

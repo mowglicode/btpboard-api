@@ -32,6 +32,9 @@ public class Project {
     @Column
     private String city;
 
+    @ManyToOne
+    private Client client;
+
 
     public long getId() {
         return id;
@@ -87,5 +90,13 @@ public class Project {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

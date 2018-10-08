@@ -1,5 +1,7 @@
 package io.btpboard.dto;
 
+import io.btpboard.persistance.entity.Client;
+
 public class ProjectDTO {
 
     private long id;
@@ -9,6 +11,7 @@ public class ProjectDTO {
     private String country;
     private int zipCode;
     private String city;
+    private Client client;
 
     public long getId() {
         return id;
@@ -64,5 +67,13 @@ public class ProjectDTO {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
